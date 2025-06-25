@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿En Qué Nivel de Conexión Espiritual Te Encuentras Hoy?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0fdf4 100%);
+        }
+        .spiritual-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        .spiritual-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #e0e7ff;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+            transition: width 0.5s ease;
+        }
+        .radial-progress {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: conic-gradient(#8b5cf6 var(--progress), #e0e7ff 0deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .radial-progress::after {
+            content: attr(data-progress) "%";
+            position: absolute;
+            font-weight: bold;
+            color: #4f46e5;
+        }
+        .floating-btn {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800 gradient-bg min-h-screen">
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/1234567890" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg z-50 hover:bg-green-600 transition-colors floating-btn">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <!-- Hero Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-indigo-900 mb-4">¿Estás Viviendo tu Potencial Espiritual Pleno?</h1>
+            <h2 class="text-xl md:text-2xl text-indigo-700 mb-8">Descúbrelo Ahora con Nuestro Test de 15 Preguntas</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-8">Este breve test te ayudará a reflexionar sobre tu conexión interior y a identificar tu punto de partida en el camino de la espiritualidad.</p>
+            <button id="startTestBtn" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:from-indigo-700 hover:to-purple-700 transition-all transform hover:scale-105">
+                ¡Comienza el Test Ahora! <i class="fas fa-sparkle ml-2"></i>
+            </button>
+        </div>
+        <div class="mt-12 flex justify-center">
+            <div class="spiritual-card bg-white p-6 rounded-xl max-w-md text-center">
+                <div class="text-5xl mb-4">🧘‍♀️</div>
+                <h3 class="text-xl font-semibold text-indigo-800 mb-2">Tu Viaje de Autodescubrimiento</h3>
+                <p class="text-gray-600">Responde con honestidad para obtener un resultado preciso. No hay respuestas correctas o incorrectas, solo oportunidades para el crecimiento.</p>
+                <div class="mt-4 text-sm text-indigo-500 font-medium">
+                    <i class="fas fa-clock mr-1"></i> Solo te tomará unos minutos
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Instructions -->
+    <section id="testInstructions" class="py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto bg-white rounded-xl shadow-sm hidden">
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-indigo-900 mb-2">Tu Viaje de Autodescubrimiento Comienza Aquí</h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto mb-4"></div>
+            <p class="text-gray-600 mb-6">Tus respuestas nos ayudarán a ofrecerte recursos más relevantes para tu evolución personal. <i class="fas fa-lightbulb text-yellow-400"></i></p>
+        </div>
+        
+        <div class="bg-indigo-50 p-6 rounded-lg mb-8">
+            <h3 class="font-semibold text-indigo-800 mb-3 flex items-center">
+                <i class="fas fa-info-circle mr-2 text-indigo-600"></i> Cómo funciona el test
+            </h3>
+            <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                    <span>Lee cada pregunta cuidadosamente y selecciona la respuesta que mejor describa tu experiencia.</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                    <span>No hay respuestas correctas o incorrectas, solo tu verdad en este momento.</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                    <span>Al final, recibirás un análisis personalizado de tu nivel de conexión espiritual.</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="text-center">
+            <button id="beginTestBtn" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:from-indigo-700 hover:to-purple-700 transition-all">
+                Comenzar Test <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Test Section -->
+    <section id="testSection" class="py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto hidden">
+        <div class="bg-white rounded-xl shadow-sm p-6 md:p-8">
+            <!-- Progress Bar -->
+            <div class="mb-8">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm font-medium text-indigo-700">Progreso del Test</span>
+                    <span id="progressText" class="text-sm font-medium text-indigo-700">0/15</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <!-- Question Container -->
+            <div id="questionContainer">
+                <!-- Questions will be inserted here by JavaScript -->
+            </div>
+            
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between mt-8">
+                <button id="prevBtn" class="bg-gray-200 text-gray-700 font-medium py-2 px-6 rounded-lg hover:bg-gray-300 transition-colors hidden">
+                    <i class="fas fa-arrow-left mr-2"></i> Anterior
+                </button>
+                <button id="nextBtn" class="bg-indigo-600 text-white font-medium py-2 px-6 rounded-lg hover:bg-indigo-700 transition-colors ml-auto">
+                    Siguiente <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="resultsSection" class="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto hidden">
+        <div class="bg-white rounded-xl shadow-sm p-6 md:p-8 text-center">
+            <div class="mb-2">
+                <span class="inline-block bg-indigo-100 text-indigo-800 text-sm font-semibold px-4 py-1 rounded-full">Tu Resultado</span>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 mb-4">Tu Viaje Espiritual: ¡Aquí Comienza tu Transformación! <i class="fas fa-rocket text-purple-500"></i></h2>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 my-10">
+                <!-- Current Level -->
+                <div class="flex-1">
+                    <div class="radial-progress mx-auto mb-4" style="--progress:30" data-progress="30"></div>
+                    <h3 class="text-xl font-semibold text-indigo-800 mb-2">Tu Nivel Actual</h3>
+                    <p class="text-gray-600">Estás en el camino, pero hay mucho más por descubrir.</p>
+                </div>
+                
+                <!-- Potential -->
+                <div class="flex-1">
+                    <div class="radial-progress mx-auto mb-4" style="--progress:70" data-progress="70"></div>
+                    <h3 class="text-xl font-semibold text-indigo-800 mb-2">Tu Potencial</h3>
+                    <p class="text-gray-600">Imagina lo que puedes alcanzar con las herramientas adecuadas.</p>
+                </div>
+            </div>
+            
+            <div class="bg-indigo-50 rounded-lg p-6 mb-8 text-left">
+                <h3 class="font-semibold text-indigo-800 mb-3 flex items-center">
+                    <i class="fas fa-star text-yellow-400 mr-2"></i> Tu Análisis Personalizado
+                </h3>
+                <p class="text-gray-700 mb-4">Basado en tus respuestas, has demostrado tener una conciencia espiritual emergente. Reconoces la importancia de la conexión interior, pero aún hay áreas donde puedes profundizar y crecer.</p>
+                <p class="text-gray-700">El auténtico crecimiento espiritual es un viaje continuo. Nuestros recursos están diseñados para guiarte en cada paso del camino, ayudándote a desbloquear todo tu potencial.</p>
+            </div>
+            
+            <div class="space-y-4 max-w-md mx-auto">
+                <h3 class="text-xl font-semibold text-indigo-800 mb-2">Tu Próximo Paso Hacia el Bienestar Integral</h3>
+                <p class="text-gray-600">Descubre cómo elevar tu conexión espiritual con nuestras herramientas especializadas.</p>
+                
+                <div class="space-y-4 mt-6">
+                    <a href="#" class="block bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-3 px-6 rounded-lg shadow hover:from-indigo-700 hover:to-purple-700 transition-all">
+                        Explora Nuestros Servicios de Transformación <i class="fas fa-sparkle ml-2"></i>
+                    </a>
+                    <a href="#" class="block border border-indigo-200 text-indigo-700 font-medium py-3 px-6 rounded-lg hover:bg-indigo-50 transition-colors">
+                        Visita Nuestro Canal de YouTube <i class="fab fa-youtube ml-2 text-red-500"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-indigo-900 mb-2">Tu Próximo Paso Hacia el Bienestar Integral</h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto mb-6"></div>
+            <p class="text-gray-600 max-w-2xl mx-auto">Descubre nuestros servicios diseñados para apoyarte en cada etapa de tu viaje espiritual.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Service 1 -->
+            <div class="spiritual-card bg-white p-6 rounded-xl">
+                <div class="text-4xl text-indigo-600 mb-4">
+                    <i class="fas fa-user-astronaut"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-indigo-800 mb-3">Consultoría Espiritual Personalizada</h3>
+                <p class="text-gray-600 mb-4">Sesiones individuales para profundizar en tu conexión espiritual y alinear tu vida con tu propósito más elevado.</p>
+                <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 inline-flex items-center">
+                    Saber más <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="spiritual-card bg-white p-6 rounded-xl">
+                <div class="text-4xl text-purple-600 mb-4">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-indigo-800 mb-3">Programa de Expansión de Conciencia</h3>
+                <p class="text-gray-600 mb-4">Un viaje de 8 semanas para desbloquear tu potencial espiritual a través de prácticas guiadas y enseñanzas transformadoras.</p>
+                <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 inline-flex items-center">
+                    Saber más <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="spiritual-card bg-white p-6 rounded-xl">
+                <div class="text-4xl text-teal-600 mb-4">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-indigo-800 mb-3">Retiro de Conexión Interior</h3>
+                <p class="text-gray-600 mb-4">Una experiencia transformadora de fin de semana para reconectarte con tu esencia en un entorno natural y sagrado.</p>
+                <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 inline-flex items-center">
+                    Saber más <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="#" class="inline-block border-2 border-indigo-600 text-indigo-600 font-bold py-3 px-8 rounded-full hover:bg-indigo-600 hover:text-white transition-colors">
+                Ver Todos los Servicios
+            </a>
+        </div>
+    </section>
+
+    <!-- FAQ Chatbot -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto bg-indigo-50 rounded-xl">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold text-indigo-900 mb-2">Preguntas Frecuentes</h2>
+            <p class="text-gray-600">Nuestro Asistente IA está aquí para ayudarte</p>
+        </div>
+        <div class="bg-white rounded-lg p-6 shadow-sm">
+            <div class="flex items-start mb-6">
+                <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                    <i class="fas fa-robot text-indigo-600 text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-800 mb-1">Asistente Espiritual</h3>
+                    <p class="text-gray-600">Hola, soy tu guía digital. ¿En qué puedo ayudarte hoy?</p>
+                </div>
+            </div>
+            <div class="space-y-4">
+                <button class="w-full text-left bg-indigo-50 hover:bg-indigo-100 text-indigo-700 py-2 px-4 rounded-lg transition-colors">
+                    ¿Cómo funciona el test de espiritualidad?
+                </button>
+                <button class="w-full text-left bg-indigo-50 hover:bg-indigo-100 text-indigo-700 py-2 px-4 rounded-lg transition-colors">
+                    ¿Qué beneficios obtendré de los servicios?
+                </button>
+                <button class="w-full text-left bg-indigo-50 hover:bg-indigo-100 text-indigo-700 py-2 px-4 rounded-lg transition-colors">
+                    ¿Cómo puedo comenzar mi transformación?
+                </button>
+            </div>
+            <div class="mt-6 flex">
+                <input type="text" placeholder="Escribe tu pregunta..." class="flex-1 border border-gray-300 rounded-l-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                <button class="bg-indigo-600 text-white py-2 px-4 rounded-r-lg hover:bg-indigo-700 transition-colors">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-indigo-900 text-white py-12 px-4 sm:px-6 lg:px-8 mt-16">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <h3 class="text-xl font-bold mb-4">Cómo Funciona la Espiritualidad</h3>
+                    <p class="text-indigo-200">Guiamos a las personas en su viaje de autodescubrimiento y crecimiento espiritual, ofreciendo herramientas y conocimientos para una vida más plena y conectada.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Enlaces</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-indigo-200 hover:text-white transition-colors">Inicio</a></li>
+                        <li><a href="#" class="text-indigo-200 hover:text-white transition-colors">Test de Espiritualidad</a></li>
+                        <li><a href="#" class="text-indigo-200 hover:text-white transition-colors">Servicios</a></li>
+                        <li><a href="#" class="text-indigo-200 hover:text-white transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Conéctate</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-indigo-200 hover:text-white text-xl transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="text-indigo-200 hover:text-white text-xl transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-indigo-200 hover:text-white text-xl transition-colors">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-indigo-200 hover:text-white text-xl transition-colors">
+                            <i class="fab fa-spotify"></i>
+                        </a>
+                    </div>
+                    <p class="text-indigo-200">
+                        <i class="fas fa-envelope mr-2"></i> contacto@espiritualidad.com
+                    </p>
+                </div>
+            </div>
+            <div class="border-t border-indigo-800 mt-8 pt-8 text-center text-indigo-300">
+                <p>© 2023 Cómo Funciona la Espiritualidad. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Test Questions
+        const questions = [
+            {
+                question: "¿Con qué frecuencia sientes que te falta propósito o dirección en tu vida diaria? 🧭",
+                options: ["Casi nunca", "A veces", "Frecuentemente", "Casi siempre"]
+            },
+            {
+                question: "¿Qué tan conectado/a te sientes con tus emociones y tu intuición? 💖",
+                options: ["Muy desconectado/a", "Algo conectado/a", "Bastante conectado/a", "Totalmente conectado/a"]
+            },
+            {
+                question: "Cuando enfrentas un desafío, ¿sientes que puedes transformarlo en una oportunidad de crecimiento? 🌱",
+                options: ["Casi nunca", "A veces", "Frecuentemente", "Casi siempre"]
+            },
+            {
+                question: "¿Dedicas tiempo regularmente a la introspección, meditación o prácticas que nutran tu espíritu? 🧘‍♀️",
+                options: ["Casi nunca", "A veces", "Frecuentemente", "Casi siempre"]
+            },
+            {
+                question: "¿Sientes que tus relaciones interpersonales reflejan la armonía y el apoyo que deseas? 🤝",
+                options: ["Casi nunca", "A veces", "Frecuentemente", "Casi siempre"]
+            },
+            {
+                question: "¿Crees que tus finanzas están alineadas con tus valores más profundos? 💰",
+                options: ["No para nada", "Parcialmente", "En su mayoría", "Completamente"]
+            },
+            {
+                question: "¿Con qué frecuencia experimentas momentos de verdadera paz interior y serenidad? 🕊️",
+                options: ["Casi nunca", "A veces", "Frecuentemente", "Casi siempre"]
+            },
+            {
+                question: "¿Sientes que te expresas auténticamente en todas las áreas de tu vida? 🗣️",
+                options: ["Casi nunca", "A veces", "Frecuentemente", "Casi siempre"]
+            },
+            {
+                question: "¿Eres capaz de soltar el control y confiar en el flujo de la vida? 🌊",
+                options: ["Casi nunca", "A veces", "Frecuentemente", "Casi siempre"]
+            },
+            {
+                question: "¿Con qué facilidad perdonas a los demás y a ti mismo/a? 🙏",
+                options: ["Me cuesta mucho", "A veces lo logro", "Generalmente lo logro", "Lo hago con facilidad"]
+            },
+            {
+                question: "¿Sientes una conexión profunda con algo más grande que tú mismo/a? ✨",
+                options: ["Casi nunca", "A veces", "Frecuentemente", "Casi siempre"]
+            },
+            {
+                question: "¿Encuentras significado en los desafíos y los consideras lecciones? 📚",
+                options: ["Casi nunca", "A veces", "Frecuentemente", "Casi siempre"]
+            },
+            {
+                question: "¿Cómo gestionas el estrés y la ansiedad en tu día a día? 🌬️",
+                options: ["Me abruman", "A veces los manejo", "Generalmente los manejo bien", "Los transformo en crecimiento"]
+            },
+            {
+                question: "¿Crees que tus creencias actuales te impulsan o te limitan? ⛓️",
+                options: ["Me limitan mucho", "Me limitan algo", "Me impulsan algo", "Me impulsan mucho"]
+            },
+            {
+                question: "¿Estás activamente buscando formas de expandir tu conciencia? 🧠",
+                options: ["Casi nunca", "A veces", "Frecuentemente", "Casi siempre"]
+            }
+        ];
+
+        // DOM Elements
+        const startTestBtn = document.getElementById('startTestBtn');
+        const testInstructions = document.getElementById('testInstructions');
+        const beginTestBtn = document.getElementById('beginTestBtn');
+        const testSection = document.getElementById('testSection');
+        const questionContainer = document.getElementById('questionContainer');
+        const progressText = document.getElementById('progressText');
+        const progressFill = document.getElementById('progressFill');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const resultsSection = document.getElementById('resultsSection');
+
+        // Test State
+        let currentQuestion = 0;
+        const answers = new Array(questions.length).fill(null);
+
+        // Event Listeners
+        startTestBtn.addEventListener('click', () => {
+            testInstructions.classList.remove('hidden');
+            startTestBtn.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        beginTestBtn.addEventListener('click', () => {
+            testInstructions.classList.add('hidden');
+            testSection.classList.remove('hidden');
+            showQuestion(currentQuestion);
+            testSection.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (answers[currentQuestion] === null) {
+                alert('Por favor selecciona una respuesta antes de continuar.');
+                return;
+            }
+
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            } else {
+                // Test completed
+                showResults();
+            }
+        });
+
+        // Functions
+        function showQuestion(index) {
+            // Update progress
+            progressText.textContent = `${index + 1}/${questions.length}`;
+            progressFill.style.width = `${((index + 1) / questions.length) * 100}%`;
+
+            // Show/hide navigation buttons
+            prevBtn.classList.toggle('hidden', index === 0);
+            nextBtn.textContent = index === questions.length - 1 ? 'Ver Resultados' : 'Siguiente';
+
+            // Display current question
+            const question = questions[index];
+            questionContainer.innerHTML = `
+                <div class="mb-6">
+                    <h3 class="text-xl md:text-2xl font-semibold text-indigo-900 mb-6">${question.question}</h3>
+                    <div class="space-y-4">
+                        ${question.options.map((option, i) => `
+                            <label class="flex items-center space-x-3 p-4 border rounded-lg cursor-pointer hover:bg-indigo-50 transition-colors ${answers[index] === i ? 'border-indigo-500 bg-indigo-50' : 'border-gray-200'}">
+                                <input type="radio" name="question-${index}" value="${i}" class="h-5 w-5 text-indigo-600" ${answers[index] === i ? 'checked' : ''}>
+                                <span class="text-gray-700">${option}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            // Add event listeners to radio buttons
+            const radioButtons = document.querySelectorAll(`input[name="question-${index}"]`);
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    answers[index] = parseInt(e.target.value);
+                });
+            });
+        }
+
+        function showResults() {
+            testSection.classList.add('hidden');
+            resultsSection.classList.remove('hidden');
+            
+            // Calculate score (simple average for demo)
+            const answeredQuestions = answers.filter(a => a !== null).length;
+            const totalScore = answers.reduce((sum, answer, index) => {
+                if (answer === null) return sum;
+                // Higher answers (index 3) are better for most questions
+                // For question 5 (index 4), higher is better
+                // For question 13 (index 12), higher is better
+                return sum + (answer / 3 * 100);
+            }, 0);
+            
+            const averageScore = Math.round(totalScore / answeredQuestions);
+            
+            // Update results with calculated score
+            const currentLevelElement = document.querySelector('.radial-progress');
+            currentLevelElement.style.setProperty('--progress', averageScore);
+            currentLevelElement.setAttribute('data-progress', averageScore);
+            
+            // Potential is inverse of current level for demo
+            const potentialScore = 100 - averageScore;
+            const potentialElement = document.querySelectorAll('.radial-progress')[1];
+            potentialElement.style.setProperty('--progress', potentialScore);
+            potentialElement.setAttribute('data-progress', potentialScore);
+            
+            // Scroll to results
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
